@@ -12,7 +12,7 @@ interface User{
 
 const Users = () => {
   const apiUrl = "https://localhost:7161/ECommerce/GetUsers"
-  const [apiData, setApiData] = useState<User | null>(null);
+  const [apiData, setApiData] = useState<User[] | null>(null);
   
   useEffect(()=>
   {
