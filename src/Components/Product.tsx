@@ -11,7 +11,7 @@ interface Product{
   categoryId: string;
   imageURL:string;
 }
-// testing
+
 const Users = () => {
   const apiUrl = "https://localhost:7161/ECommerce/GetProducts"
   const [apiData, setApiData] = useState<Product[] | null>(null);
