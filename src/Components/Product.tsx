@@ -38,9 +38,10 @@ const Users = () => {
   return (
     <>
       {apiData && apiData.map((product)=>(
-      <div className='product_container'>
+      <div className='product_item'>
         <h1>{product.name}</h1>
-        <img src={product.imageURL}></img>
+        <img src={product.imageURL} className='product_image' width="700px"></img>
+        <h2>{product.price} $</h2>
       </div>
       
       ))}

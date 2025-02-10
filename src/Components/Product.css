@@ -1,5 +1,17 @@
-.product_container{
-  border: 2px;
+.product_item {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 3;
+  flex-basis: 20%;
+  text-align: left;
+  align-items: center;
+  padding: 15px;
+  border: 1px;
+  border-color: cadetblue; 
   border-style: solid;
-  border-color: aqua;
+}
+
+.product_image{
+  max-width: 100%;
+  height: auto;
 }
