@@ -23,7 +23,7 @@ const Product = () => {
     fetchDataApi()
   },[]
   )
-
+//test
   const fetchDataApi = async () =>
   {
     try{
