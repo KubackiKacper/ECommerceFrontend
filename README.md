@@ -1,2 +1,3 @@
-#ECommerceFrontend
-WORK IN PROGRESS
+# ECommerce - Frontend
+## React + Typescript
+### WORK IN PROGRESS
