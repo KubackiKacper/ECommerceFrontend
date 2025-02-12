@@ -1,14 +1,19 @@
 import { useState } from 'react'
-import Users from './Users.tsx'
 import Product from './Components/Product.tsx'
 import './App.css'
+import CartButton from './Components/CartButton.tsx'
+
+
 function App() {
+  
   
   return (
    <div className='product_container'>
-   
-   <Product/>
-   <Product/>
+    
+    <CartButton/>
+    <Product/>
+    <Product/>
+    
    </div> 
   )
 }

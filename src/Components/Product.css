@@ -15,7 +15,11 @@
   max-width: 100%;
   height: auto;
 }
-
+.product_details
+{
+  justify-content: left;
+  font-size: 8px;
+}
 .button_div
 {
   align-self: flex-end;
