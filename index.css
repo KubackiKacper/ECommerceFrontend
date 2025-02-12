@@ -8,4 +8,6 @@ body{
   width: 100%;
   align-items: center;
   justify-content: center;
+  border-bottom: 5px solid violet;
+  margin-bottom: 20px;
 }

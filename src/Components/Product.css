@@ -7,11 +7,35 @@
   align-items: center;
   padding: 15px;
   border: 1px;
-  border-color: cadetblue; 
+  border-color: violet; 
   border-style: solid;
 }
 
 .product_image{
   max-width: 100%;
   height: auto;
+}
+
+.button_div
+{
+  align-self: flex-end;
+}
+.button
+{
+  align-self: flex-end;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-size: 30px;
+  color: violet;
+  transition: 0.2s;
+  margin-left: 5px;
+}
+
+.button:hover
+{
+  cursor: pointer;
+  color: rgb(255, 50, 255);
+  transform: scale(1.2);
 }

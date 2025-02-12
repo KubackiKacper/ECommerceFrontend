@@ -1,6 +1,8 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, MouseEvent } from 'react'
 import './Product.css'
+import { FaCartArrowDown } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 
 interface Product{
   id: number;
@@ -11,16 +13,17 @@ interface Product{
   categoryId: string;
   imageURL:string;
 }
-// testing
-const Users = () => {
+
+const Product = () => {
   const apiUrl = "https://localhost:7161/ECommerce/GetProducts"
   const [apiData, setApiData] = useState<Product[] | null>(null);
-  
+
   useEffect(()=>
   {
     fetchDataApi()
   },[]
   )
+
   const fetchDataApi = async () =>
   {
     try{
@@ -33,12 +36,19 @@ const Users = () => {
   {
     console.error("No data found", error)
   }
+  
   };
   
   return (
     <>
+    
       {apiData && apiData.map((product)=>(
+        
       <div className='product_item'>
+        <div className='button_div'>
+          <button className='button'><FaInfoCircle/></button>
+          <FaCartArrowDown type="button" className='button'/>
+        </div>
         <h1>{product.name}</h1>
         <img src={product.imageURL} className='product_image' width="700px"></img>
         <h2>{product.price} $</h2>
@@ -48,4 +58,4 @@ const Users = () => {
     </>
   )
 }
-export default Users
+export default Product
