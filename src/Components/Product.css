@@ -1,28 +1,7 @@
-.product_item {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 3;
-  flex-basis: 20%;
-  text-align: left;
-  align-items: center;
-  padding: 15px;
-  border: 1px;
-  border-color: violet; 
-  border-style: solid;
-}
-
 .product_image{
   max-width: 100%;
   height: auto;
-}
-.product_details
-{
-  justify-content: left;
-  font-size: 8px;
-}
-.button_div
-{
-  align-self: flex-end;
+  object-fit: cover;
 }
 .button
 {
@@ -34,9 +13,7 @@
   font-size: 30px;
   color: violet;
   transition: 0.2s;
-  margin-left: 5px;
 }
-
 .button:hover
 {
   cursor: pointer;

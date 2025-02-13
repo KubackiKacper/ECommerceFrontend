@@ -1,21 +1,14 @@
-.cart_button_container
-{
-  position:absolute;
-  top: 20px;
-  right: 25px;
-  
-}
+
 .cart_button{
   
-  align-self: flex-end;
   background: none;
   border: none;
   outline: none;
   box-shadow: none;
-  font-size: 50px;
+  font-size: 30px;
   color: violet;
   transition: 0.2s;
-  margin-left: 5px;
+  position:relative;
 }
 .cart_button:hover{
   cursor: pointer;
