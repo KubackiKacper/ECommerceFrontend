@@ -8,13 +8,13 @@ function App() {
   
   
   return (
-   <div className='product_container'>
-    
+    <>
     <CartButton/>
-    <Product/>
-    <Product/>
-    
-   </div> 
+    <div className='product_container'>
+      <Product/>
+      <Product/>
+    </div> 
+   </>
   )
 }
 
