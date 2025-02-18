@@ -20,7 +20,21 @@ const CartButton = () => {
   return (
     <>
     <div className='cart_button_container'>
-      <button className='cart_button' onClick={notify}><FaShoppingCart /></button>
+      <button className='cart_button rounded-circle' onClick={notify}>
+        <FaShoppingCart />
+        <div className=' rounded-circle bg-danger d-flex justify-content-center 
+        align-items-center' style={{
+          color:"white",
+          fontSize:"16px", 
+          width:"1.2rem", 
+          height:"1.2rem", 
+          position:"absolute", 
+          bottom:0,
+          right:0,
+          transform:"translate(25%,25%)"}}>
+            3
+        </div>
+      </button>
     </div>
     <ToastContainer/>
     </>
