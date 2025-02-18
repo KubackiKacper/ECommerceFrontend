@@ -1,15 +1,27 @@
 import { useState } from 'react'
-import Users from './Users.tsx'
 import Product from './Components/Product.tsx'
 import './App.css'
+import CartButton from './Components/CartButton.tsx'
+import {Routes, Route} from "react-router-dom"
+import { Container, Nav } from 'react-bootstrap'
+import  NavBar  from './Components/NavBar.tsx'
+
+
 function App() {
   
+  
   return (
-   <div className='product_container'>
-   
-   <Product/>
-   <Product/>
-   </div> 
+    <>
+    <NavBar/>
+    <Container>
+      <Routes>
+        <Route path="/" element={<Product/>}></Route>
+      </Routes>
+    </Container>
+    {/* <div className='product_container'>
+      
+    </div>  */}
+   </>
   )
 }
 

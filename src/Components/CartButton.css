@@ -1,11 +1,6 @@
-.product_image{
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-.button
-{
-  align-self: flex-end;
+
+.cart_button{
+  
   background: none;
   border: none;
   outline: none;
@@ -13,10 +8,9 @@
   font-size: 30px;
   color: violet;
   transition: 0.2s;
+  position:relative;
 }
-.button:hover
-{
+.cart_button:hover{
   cursor: pointer;
   color: rgb(255, 50, 255);
-  transform: scale(1.2);
 }
