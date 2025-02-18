@@ -1,0 +1,8 @@
+.text{
+  font-size: 20px;
+}
+.product_image{
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}

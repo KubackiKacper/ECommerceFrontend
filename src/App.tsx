@@ -5,22 +5,25 @@ import CartButton from './Components/CartButton.tsx'
 import {Routes, Route} from "react-router-dom"
 import { Container, Nav } from 'react-bootstrap'
 import  NavBar  from './Components/NavBar.tsx'
-
+import { ShoppingCartProvider } from './context/ShoppingCartContext.tsx'
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   
   
   return (
     <>
-    <NavBar/>
-    <Container>
-      <Routes>
-        <Route path="/" element={<Product/>}></Route>
-      </Routes>
-    </Container>
-    {/* <div className='product_container'>
-      
-    </div>  */}
+    
+    <ShoppingCartProvider>
+      <NavBar/>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Product/>}></Route>
+        </Routes>
+      </Container>
+    </ShoppingCartProvider>
+    <ToastContainer/>
    </>
   )
 }

@@ -1,6 +1,4 @@
-
 .cart_button{
-  
   background: none;
   border: none;
   outline: none;
@@ -13,4 +11,15 @@
 .cart_button:hover{
   cursor: pointer;
   color: rgb(255, 50, 255);
+}
+
+.cart_button_quantity{
+    color:white;
+    font-size: 16px;
+    width:1.2rem;
+    height:1.2rem; 
+    position:absolute;
+    bottom:0;
+    right:0;
+    transform:translate(25%,25%);
 }
