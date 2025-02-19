@@ -1,31 +1,36 @@
-import React from 'react'
+import React from 'react';
 import { useShoppingCart } from '../context/ShoppingCartContext';
-
+import {Button, Stack } from 'react-bootstrap'
 interface ICartItemProps {
   id: number;
   quantity: number;
 }
 
-interface IProductProps {
-  id: number;
-  name: string;
-  description: string;
-  price: string;
-  stockQuantity: string;
-}
-
-// Poprawiona funkcja
 export const CartItem = ({ id, quantity }: ICartItemProps) => {
-  const { cartItems } = useShoppingCart(); // Pobieramy koszyk
+  const { products,removeFromCart } = useShoppingCart();
+  const item = products.find(p => p.id === id); // Teraz możemy znaleźć produkt w `products`
 
-  // Znajdujemy produkt na podstawie `id`
-  const item = cartItems.find((i) => i.id === id);
-
-  if (!item) return null; // Jeśli produkt nie istnieje, nie renderujemy nic
-
+  if (!item) return null;
+  
   return (
+
     <>
-      <span>{item.id}</span> <span>{item.quantity}</span>
+      <Stack direction='horizontal' gap={2} className='d-flex align-items-center'>
+        <img src={item.imageURL} style={{width:"125px", height:"125px", objectFit:"scale-down"}}></img>
+        <div className='me-auto'>
+          <div>
+            {item.name} {quantity>1 && <span className='text-muted' style={{fontSize:"0.75rem"}}>x{quantity}</span>}
+          </div>
+          <div className='text-muted' style={{fontSize:"0.75rem"}}>
+            {item.price}$
+          </div>
+        </div>
+        <div>
+          {Number(item.price)*Number(quantity)}
+        </div>
+        <Button variant='outline-danger' size='sm' onClick={()=>removeFromCart(item.id)}>x</Button>
+      </Stack>
+      
     </>
   );
 };

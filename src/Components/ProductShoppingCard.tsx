@@ -43,9 +43,9 @@ const ProductShoppingCard = (apiData: IProductCardProps) => {
                 </button>:
               <div className='d-flex align-items-center' style={{gap:"0.5rem"}}>
                 <div className='d-flex align-items-center justify-content-center' style={{gap:"0.5rem"}}>
-                  <Button size='sm' onClick={() =>{notify;decreaseCartQuantity(apiData.id)}}>-</Button>
+                  <Button size='sm' variant='outline-danger' onClick={() =>{decreaseCartQuantity(apiData.id)}}>-</Button>
                   <div className='fs-4'>{quantity}</div>
-                  <Button size='sm' onClick={() =>{notify;increaseCartQuantity(apiData.id)}}>+</Button>
+                  <Button size='sm' variant='outline-success' onClick={() =>{increaseCartQuantity(apiData.id)}}>+</Button>
                 </div>
               </div>
               }

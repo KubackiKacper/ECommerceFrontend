@@ -7,7 +7,7 @@ import { FaInfoCircle } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import {Button, Card, Col,Row} from "react-bootstrap";
 import ProductShoppingCard from './ProductShoppingCard.tsx'
-
+import { useShoppingCart } from '../context/ShoppingCartContext';
 
 interface IProductProps{
   id: number;
@@ -20,6 +20,7 @@ interface IProductProps{
 }
 
 const Product = () => {
+  
   const [apiData, setApiData] = useState<IProductProps[] | null>(null);
 
   const [expandedProduct, setExpandedProduct] = useState<number | null>(null);

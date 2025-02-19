@@ -9,19 +9,20 @@ interface IShoppingCartProviderProps{
 
 export const ShoppingCart = ({isOpen}:IShoppingCartProviderProps) => {
   const {closeCart, cartItems} = useShoppingCart()
+  
   return (
-    <>
-      <Offcanvas show={isOpen} onHide={closeCart} placement='end'>
-        <Offcanvas.Header closeButton>
-           <Offcanvas.Title>Cart</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <Stack gap={3}>
-            {cartItems.map(item => (
-            <CartItem key ={item.id} {...item} />))}
-          </Stack>
-        </Offcanvas.Body>
-      </Offcanvas>
-    </>
-  )
-}
+    <Offcanvas show={isOpen} onHide={closeCart} placement="end">
+      <Offcanvas.Header closeButton>
+        <Offcanvas.Title>Cart</Offcanvas.Title>
+      </Offcanvas.Header>
+      <Offcanvas.Body>
+        <Stack gap={3}>
+          {cartItems.length === 0 ? <p>No items in cart!</p> : 
+            cartItems.map(item => <CartItem key={item.id} {...item} />)
+          }
+          
+        </Stack>
+      </Offcanvas.Body>
+    </Offcanvas>
+  );
+};
