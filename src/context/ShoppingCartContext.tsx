@@ -20,7 +20,7 @@ interface ICartItem {
 }
 
 interface IShoppingCartContext {
-  products: IProductProps[]; // Dodajemy products
+  products: IProductProps[]; 
   cartQuantity: number;
   cartItems: ICartItem[];
   increaseCartQuantity: (id: number) => void;
@@ -38,12 +38,12 @@ export const useShoppingCart = () => {
 };
 
 export const ShoppingCartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [products, setProducts] = useState<IProductProps[]>([]); // Nowy stan dla produktów
+  const [products, setProducts] = useState<IProductProps[]>([]); 
   const [cartItems, setCartItems] = useLocalStorage<ICartItem[]>("default",[]);
   const [isOpen, setIsOpen] = useState(false)
   const fetchDataApi = async () => {
     try {
-      const response = await fetch(apiUrls.productsUrl.urlLink); // Podmień na właściwy URL
+      const response = await fetch(apiUrls.productsUrl.urlLink); 
       const data = await response.json();
       setProducts(data);
     } catch (error) {

@@ -8,7 +8,7 @@ interface ICartItemProps {
 
 export const CartItem = ({ id, quantity }: ICartItemProps) => {
   const { products,removeFromCart } = useShoppingCart();
-  const item = products.find(p => p.id === id); // Teraz możemy znaleźć produkt w `products`
+  const item = products.find(p => p.id === id); 
 
   if (!item) return null;
   
