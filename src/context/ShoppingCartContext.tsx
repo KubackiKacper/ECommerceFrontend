@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { createContext,ReactNode,useContext } from 'react'
+import { ShoppingCart } from '../Components/ShoppingCart';
 
 interface IShoppingCartProviderProps 
 {
@@ -9,6 +10,7 @@ interface IShoppingCartProviderProps
 interface ICartItem{
   id:number;
   quantity:number;
+  
 }
 
 interface IShoppingCartContext
@@ -97,6 +99,7 @@ export const ShoppingCartProvider = ({children}: IShoppingCartProviderProps) =>
   return (
     <ShoppingCartContext.Provider value={{openCart,closeCart,cartQuantity,cartItems,getItemQuantity,increaseCartQuantity,decreaseCartQuantity}}>
     {children}
+    <ShoppingCart isOpen={isOpen}/>
   </ShoppingCartContext.Provider>
   )
   
