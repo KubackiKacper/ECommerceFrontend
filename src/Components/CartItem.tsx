@@ -26,7 +26,7 @@ export const CartItem = ({ id, quantity }: ICartItemProps) => {
           </div>
         </div>
         <div>
-          {Number(item.price)*Number(quantity)}
+          {Number(item.price)*Number(quantity)}$
         </div>
         <Button variant='outline-danger' size='sm' onClick={()=>removeFromCart(item.id)}>x</Button>
       </Stack>
