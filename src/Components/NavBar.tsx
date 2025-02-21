@@ -4,7 +4,9 @@ import './NavBar.css'
 import { NavLink } from 'react-router-dom'
 import CartButton from './CartButton'
 
+
 const NavBar = () => {
+  
   return (
     <NavbarBs sticky='top' className='navbar_container'>
       <Container>

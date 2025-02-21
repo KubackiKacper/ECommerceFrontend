@@ -1,13 +1,4 @@
-body{
+.body_default{
   font-family: Arial, Helvetica, sans-serif;
-  background: rgb(37, 37, 37);
-  color:white;
-}
-.header{
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 5px solid violet;
-  margin-bottom: 20px;
+  background: rgb(255, 255, 255);
 }
