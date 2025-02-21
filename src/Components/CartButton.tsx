@@ -23,8 +23,8 @@ const CartButton = () => {
     <div className='cart_button_container'>
       <button className='cart_button rounded-circle' onClick={openCart}>
         <FaShoppingCart />
-        <div className=' rounded-circle bg-danger d-flex justify-content-center 
-        align-items-center cart_button_quantity'>
+        <div className=' rounded-circle bg-white d-flex justify-content-center 
+        align-items-center cart_button_quantity'  style={{color:"violet"}}>
             {cartQuantity}
         </div>
       </button>
