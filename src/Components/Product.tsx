@@ -8,12 +8,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import {Button, Card, Col,Row} from "react-bootstrap";
 import ProductShoppingCard from './ProductShoppingCard.tsx'
 import { useShoppingCart } from '../context/ShoppingCartContext';
+import formatCurrency from './formatCurrency.tsx';
 
 interface IProductProps{
   id: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
   stockQuantity: string;
   categoryId: string;
   imageURL:string;
@@ -22,13 +23,6 @@ interface IProductProps{
 const Product = () => {
   
   const [apiData, setApiData] = useState<IProductProps[] | null>(null);
-
-  const [expandedProduct, setExpandedProduct] = useState<number | null>(null);
-
-  const onDetailClick = (id: number) => {
-    setExpandedProduct((prev) => (prev === id ? null : id));
-  };
-
 
   useEffect(()=>
   {
@@ -57,7 +51,7 @@ const Product = () => {
           <ProductShoppingCard 
             id={products.id} 
             name={products.name}
-            price= {products.price}
+            price={products.price}
             imageURL={products.imageURL}
           />
         </Col>

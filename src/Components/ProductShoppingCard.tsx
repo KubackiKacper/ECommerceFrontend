@@ -5,11 +5,12 @@ import { ToastContainer, Bounce, toast } from 'react-toastify';
 import './ProductShoppingCard.css'
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import 'react-toastify/dist/ReactToastify.css';
+import formatCurrency from './formatCurrency';
 
 interface IProductCardProps{
   id: number;
   name: string;
-  price: string;
+  price: number;
   imageURL:string;
 }
 const ProductShoppingCard = (apiData: IProductCardProps) => {
@@ -31,7 +32,7 @@ const ProductShoppingCard = (apiData: IProductCardProps) => {
           <Card.Body className='d-flex flex-column' >
             <Card.Title className='d-flex justify-content-between align-items-baseline mb-4'>
               <span>{apiData.name}</span>
-              <span>{apiData.price}$</span>
+              <span>{formatCurrency(apiData.price)}</span>
             </Card.Title>
             <div className='mt-auto'>
               {quantity===0 ?<button className='button' onClick={() => {
