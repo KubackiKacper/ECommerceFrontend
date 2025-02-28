@@ -3,7 +3,7 @@ import { useShoppingCart } from '../context/ShoppingCartContext';
 import {Button, Stack } from 'react-bootstrap'
 import formatCurrency from './formatCurrency';
 
-interface ICartItemProps {
+export interface ICartItemProps {
   id: number;
   quantity: number;
 }

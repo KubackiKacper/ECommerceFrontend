@@ -10,7 +10,7 @@ import ProductShoppingCard from './ProductShoppingCard.tsx'
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import formatCurrency from './formatCurrency.tsx';
 
-interface IProductProps{
+export interface IProductProps{
   id: number;
   name: string;
   description: string;

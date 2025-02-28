@@ -26,7 +26,7 @@ const CheckoutView = () => {
   const notify=()=>{
     toast.info('Order placed successfully! Thank you!', {
     position: "top-left",
-    autoClose: 5000,
+    autoClose: 4000,
     hideProgressBar: false,
     closeOnClick: false,
     pauseOnHover: false,
@@ -35,6 +35,11 @@ const CheckoutView = () => {
     theme: "light",
     transition: Bounce,
     })};
+
+  
+  const timeout = (delay: number)=>{
+    return new Promise( res => setTimeout(res, delay) );
+  }
   const checkoutTotal = cartItems.reduce((total,cartItem)=>{
     const item = products.find(p => p.id === cartItem.id); 
     return total + (Number(item?.price)||0) * cartItem.quantity
@@ -61,8 +66,10 @@ const CheckoutView = () => {
       method:'POST',
       headers:{"Content-Type": "application/json"},
       body: JSON.stringify(formStateValues)
-    }).then(()=>{
+    }).then(async ()=>{
+      
       notify();
+      await timeout(5000)
       navigate(path)
       window.localStorage.clear();
       window.location.reload();
@@ -143,5 +150,4 @@ const CheckoutView = () => {
 
 
 export default CheckoutView
-
 
