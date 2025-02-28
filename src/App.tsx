@@ -8,6 +8,7 @@ import  NavBar  from './Components/NavBar.tsx'
 import { ShoppingCartProvider } from './context/ShoppingCartContext.tsx'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import CheckoutView from './Components/CheckoutView.tsx'
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   
   return (
     <>
-    
+    <ToastContainer/>
     <ShoppingCartProvider>
       <NavBar/>
       <Container>
@@ -25,7 +26,7 @@ function App() {
         </Routes>
       </Container>
     </ShoppingCartProvider>
-    <ToastContainer/>
+    
    </>
   )
 }

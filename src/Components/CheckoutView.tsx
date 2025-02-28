@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
@@ -6,45 +6,95 @@ import Form from 'react-bootstrap/Form';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { CartItem } from './CartItem';
 import formatCurrency from './formatCurrency';
+import apiUrls from '../../urlList';
+import { Bounce,toast } from 'react-toastify';
+
+
+
+
+interface IFormProps{
+  email?:string,
+  totalPrice?:number,
+  orderDate?:Date,
+  status?: string,
+  paymentId?:number
+}
 
 const CheckoutView = () => {
   const {cartItems,products} = useShoppingCart()
-  
+  const [formStateValues, setFormStateValues] = useState<IFormProps | undefined>(undefined);
+  const notify=()=>{
+    toast.info('Order placed successfully! Thank you!', {
+    position: "top-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    })};
+  const checkoutTotal = cartItems.reduce((total,cartItem)=>{
+    const item = products.find(p => p.id === cartItem.id); 
+    return total + (Number(item?.price)||0) * cartItem.quantity
+  },0)
+
   let navigate = useNavigate();
+  const path = "/";
   const GoBackButton = () =>{
-      const path = "/"
+     
       navigate(path);
     }
+
   
+  const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault();
+    
+    if(formStateValues)
+    {
+      formStateValues.totalPrice = Math.round(checkoutTotal*100)/100;
+      formStateValues.orderDate = new Date(Date.now());
+      
+    }
+    fetch(apiUrls.placeOrderUrl.urlLink,{
+      method:'POST',
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify(formStateValues)
+    }).then(()=>{
+      notify();
+      navigate(path)
+      window.localStorage.clear();
+      window.location.reload();
+      
+    })
+
+  }
+  
+  const handleChange =(e:React.ChangeEvent<HTMLInputElement >)=>{
+    setFormStateValues({...formStateValues,[e.target.name]:e.target.value})
+    
+    console.log(formStateValues)
+  }
  
   return (
     <>
       {cartItems.length===0 ? <div className="alert alert-danger">NO ITEMS IN CART, CANNOT PROCEED TO CHECKOUT</div> :
         <Container>
           <p style={{fontSize:"20px"}}>Please provide informations below</p>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Row>
                 <Col>
                 <Row className="justify-content-md-center mb-3">
                   <Col>
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your name" />
-                  </Col> 
-                  <Col>
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your last name" />
-                  </Col>
-                </Row>
-                <Row className="justify-content-md-center mb-3">
-                  <Col>
                     <Form.Label>E-Mail</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your e-mail" />
+                    <Form.Control required type="text" placeholder="Enter Your e-mail" name={"email"} onChange={handleChange}/>
                   </Col>
                 </Row>
                 <Row className="justify-content-md-center mb-3">
                   <Col>
                     <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your e-mail" />
+                    <Form.Control type="text" placeholder="Enter Your address" required name={"status"} onChange={handleChange}/>
                   </Col>
                 </Row>
                 <Row className="justify-content-md-center mb-3">
@@ -78,11 +128,7 @@ const CheckoutView = () => {
                 <Form.Label size="lg">Your Cart</Form.Label>
                 {cartItems.map(item => <CartItem key={item.id} {...item} />)}
 
-                <div className='ms-auto fs-3'>Total {formatCurrency(
-                  cartItems.reduce((total,cartItem)=>{
-                  const item = products.find(p => p.id === cartItem.id); 
-                  return total + (Number(item?.price)||0) * cartItem.quantity
-                },0))}
+                <div className='ms-auto fs-3'>Total {formatCurrency(checkoutTotal)}
               </div>
               </Col>
               
@@ -97,3 +143,5 @@ const CheckoutView = () => {
 
 
 export default CheckoutView
+
+

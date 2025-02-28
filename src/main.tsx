@@ -6,10 +6,11 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )

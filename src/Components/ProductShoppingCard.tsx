@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, Card} from "react-bootstrap"
 import { FaCartArrowDown } from "react-icons/fa";
-import { ToastContainer, Bounce, toast } from 'react-toastify';
+import { ToastContainer, toast,Bounce } from 'react-toastify';
 import './ProductShoppingCard.css'
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,18 +15,23 @@ interface IProductCardProps{
 }
 const ProductShoppingCard = (apiData: IProductCardProps) => {
 
-  const notify = () => {
-    toast.success("Item added to cart!", {
-      position: "top-left",
-      autoClose: 3000,
-      
+  const notify=()=>
+    toast.success('Item added to cart!', {
+    position: "top-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
     });
-  };
+  
   const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity} = useShoppingCart();
   const quantity = getItemQuantity(apiData.id)
   return (
     <>
-    
         <Card className='h-100' style={{borderColor: "violet"}}>
           <Card.Img variant="top" src={apiData.imageURL} className='product_image'></Card.Img>
           <Card.Body className='d-flex flex-column' >
@@ -36,9 +41,8 @@ const ProductShoppingCard = (apiData: IProductCardProps) => {
             </Card.Title>
             <div className='mt-auto'>
               {quantity===0 ?<button className='button' onClick={() => {
-            increaseCartQuantity(apiData.id);
-            notify();
-          }}>
+                notify();
+                increaseCartQuantity(apiData.id)}}>
                 <FaCartArrowDown/>
                 <span className="text"> Add To Cart</span>
                 </button>:
@@ -50,11 +54,10 @@ const ProductShoppingCard = (apiData: IProductCardProps) => {
                 </div>
               </div>
               }
-              
             </div>
           </Card.Body>
         </Card>
-            
+        
   </>
     
   )
