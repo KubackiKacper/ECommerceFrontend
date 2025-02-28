@@ -14,6 +14,9 @@ const NavBar = () => {
           <Nav.Link to="/" as={NavLink}>
             Home
           </Nav.Link>
+          <Nav.Link to="/checkout" as={NavLink}>
+            Checkout
+          </Nav.Link>
         </Nav>
         <CartButton/>  
       </Container>

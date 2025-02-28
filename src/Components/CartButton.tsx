@@ -6,18 +6,8 @@ import { useShoppingCart } from '../context/ShoppingCartContext'
 
 const CartButton = () => {
   const {openCart,cartQuantity} = useShoppingCart()
-  const notify = () =>{
-    toast.info('Redirecting To Cart', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      });
-  };
+  
+  
   return (
     <>
     <div className='cart_button_container'>

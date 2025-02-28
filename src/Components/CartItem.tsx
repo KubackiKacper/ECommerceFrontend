@@ -1,7 +1,9 @@
 import React from 'react';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import {Button, Stack } from 'react-bootstrap'
-interface ICartItemProps {
+import formatCurrency from './formatCurrency';
+
+export interface ICartItemProps {
   id: number;
   quantity: number;
 }
@@ -9,7 +11,6 @@ interface ICartItemProps {
 export const CartItem = ({ id, quantity }: ICartItemProps) => {
   const { products,removeFromCart } = useShoppingCart();
   const item = products.find(p => p.id === id); 
-
   if (!item) return null;
   
   return (
@@ -26,7 +27,10 @@ export const CartItem = ({ id, quantity }: ICartItemProps) => {
           </div>
         </div>
         <div>
-          {Number(item.price)*Number(quantity)}$
+          {formatCurrency(Number(item.price) * Number(quantity))}
+        </div>
+        <div>
+          
         </div>
         <Button variant='outline-danger' size='sm' onClick={()=>removeFromCart(item.id)}>x</Button>
       </Stack>

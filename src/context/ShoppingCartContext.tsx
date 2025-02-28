@@ -3,26 +3,13 @@ import apiUrls from '../../urlList';
 import { ShoppingCart } from '../Components/ShoppingCart';
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-
-interface IProductProps {
-  id: number;
-  name: string;
-  description: string;
-  price: string;
-  stockQuantity: string;
-  categoryId: string;
-  imageURL: string;
-}
-
-interface ICartItem {
-  id: number;
-  quantity: number;
-}
+import { IProductProps } from '../Components/Product';
+import { ICartItemProps } from '../Components/CartItem';
 
 interface IShoppingCartContext {
   products: IProductProps[]; 
   cartQuantity: number;
-  cartItems: ICartItem[];
+  cartItems: ICartItemProps[];
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
   getItemQuantity: (id: number) => number;
@@ -39,7 +26,7 @@ export const useShoppingCart = () => {
 
 export const ShoppingCartProvider = ({ children }: { children: React.ReactNode }) => {
   const [products, setProducts] = useState<IProductProps[]>([]); 
-  const [cartItems, setCartItems] = useLocalStorage<ICartItem[]>("default",[]);
+  const [cartItems, setCartItems] = useLocalStorage<ICartItemProps[]>("default",[]);
   const [isOpen, setIsOpen] = useState(false)
   const fetchDataApi = async () => {
     try {
