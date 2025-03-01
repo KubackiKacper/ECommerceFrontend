@@ -23,6 +23,7 @@ interface IFormProps{
 const CheckoutView = () => {
   const {cartItems,products} = useShoppingCart()
   const [formStateValues, setFormStateValues] = useState<IFormProps | undefined>(undefined);
+  const [checkoutClicked, setCheckoutClicked] = useState<boolean>(false)
   const notify=()=>{
     toast.info('Order placed successfully! Thank you!', {
     position: "top-left",
@@ -54,6 +55,7 @@ const CheckoutView = () => {
 
   
   const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
+    setCheckoutClicked(true)
     e.preventDefault();
     
     if(formStateValues)
@@ -126,7 +128,7 @@ const CheckoutView = () => {
                 </Row>
                 <Row className="">
                   <Col className='mr-5'>
-                    <Button type='submit' style={{ background: "violet", border: "none", marginRight:"3px" }}>Proceed</Button>
+                    <Button type='submit' disabled={checkoutClicked} style={{ background: "violet", border: "none", marginRight:"3px" }}>Proceed</Button>
                     <Button style={{ background: "gray", border: "none" }} onClick={()=>GoBackButton()}>Go Back</Button>
                   </Col>
                 </Row>
