@@ -10,7 +10,7 @@ import apiUrls from '../../urlList';
 import { Bounce,toast } from 'react-toastify';
 
 
-
+//texst
 
 interface IFormProps{
   email?:string,
