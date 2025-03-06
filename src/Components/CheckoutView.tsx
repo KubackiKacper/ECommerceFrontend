@@ -8,6 +8,7 @@ import { CartItem } from './CartItem';
 import formatCurrency from './formatCurrency';
 import apiUrls from '../../urlList';
 import { Bounce,toast } from 'react-toastify';
+import notify from './notify';
 
 
 //texst
@@ -43,19 +44,7 @@ const CheckoutView = () => {
   const [checkoutClicked, setCheckoutClicked] = useState<boolean>(false)
   const [validated,setValidated] = useState<boolean>(false);
 
-  const notify=()=>{
-    toast.info('Order placed successfully! Thank you!', {
-    position: "top-left",
-    autoClose: 4000,
-    hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    transition: Bounce,
-    })};
-
+  
   
   const timeout = (delay: number)=>{
     return new Promise( res => setTimeout(res, delay) );
@@ -67,7 +56,7 @@ const CheckoutView = () => {
 
   let navigate = useNavigate();
   const path = "/";
-  const GoBackButton = () =>{
+  const GoToStartAction = () =>{
      
       navigate(path);
     }
@@ -104,9 +93,9 @@ const CheckoutView = () => {
         body: JSON.stringify(formStateValues)
       }).then(async ()=>{
         
-        notify();
+        notify({type:"info",message:"Order placed successfully! Thank You!"});
         await timeout(5000)
-        navigate(path)
+        GoToStartAction();
         window.localStorage.clear();
         window.location.reload();
         
@@ -177,7 +166,7 @@ const CheckoutView = () => {
                 <Row className="">
                   <Col className='mr-5'>
                     <Button type='submit' disabled={checkoutClicked} style={{ background: "violet", border: "none", marginRight:"3px" }}>Proceed</Button>
-                    <Button disabled={checkoutClicked} style={{ background: "gray", border: "none" }} onClick={()=>GoBackButton()}>Go Back</Button>
+                    <Button disabled={checkoutClicked} style={{ background: "gray", border: "none" }} onClick={()=>GoToStartAction()}>Go Back</Button>
                   </Col>
                 </Row>
               </Col>

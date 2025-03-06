@@ -6,6 +6,7 @@ import './ProductShoppingCard.css'
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import 'react-toastify/dist/ReactToastify.css';
 import formatCurrency from './formatCurrency';
+import notify from './notify';
 
 interface IProductCardProps{
   id: number;
@@ -15,19 +16,6 @@ interface IProductCardProps{
 }
 const ProductShoppingCard = (apiData: IProductCardProps) => {
 
-  const notify=()=>
-    toast.success('Item added to cart!', {
-    position: "top-left",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    transition: Bounce,
-    });
-  
   const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity} = useShoppingCart();
   const quantity = getItemQuantity(apiData.id)
   return (
@@ -41,7 +29,7 @@ const ProductShoppingCard = (apiData: IProductCardProps) => {
             </Card.Title>
             <div className='mt-auto'>
               {quantity===0 ?<button className='button' onClick={() => {
-                notify();
+                notify({type:'success',message:'Item added to cart!'});
                 increaseCartQuantity(apiData.id)}}>
                 <FaCartArrowDown/>
                 <span className="text"> Add To Cart</span>
